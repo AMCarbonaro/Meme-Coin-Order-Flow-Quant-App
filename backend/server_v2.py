@@ -19,6 +19,7 @@ from exchanges import ExchangeDiscovery, PerpContract
 from analyzer import OrderFlowAnalyzer, WhaleAlert, SymbolStats
 from bingx_client import BingXWebSocket, OrderBook, Trade
 from hyperliquid_client import HyperliquidWebSocket, fetch_orderbook as hl_fetch_orderbook
+from blofin_client import BloFinWebSocket
 from signals import SignalEngine, OrderBookLevel as SignalOrderBookLevel
 
 
@@ -67,8 +68,10 @@ class CoinWatcher:
             self.client.on_trade = self._on_trade
             asyncio.create_task(self._run_client())
         elif self.exchange == "blofin":
-            # TODO: Add BloFin websocket client
-            pass
+            self.client = BloFinWebSocket(symbols=[self.symbol])
+            self.client.on_orderbook = self._on_orderbook
+            self.client.on_trade = self._on_trade
+            asyncio.create_task(self._run_client())
             
     async def _run_client(self):
         """Run the websocket client"""
