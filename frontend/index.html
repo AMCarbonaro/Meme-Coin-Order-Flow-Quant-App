@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Quant - Order Flow Scanner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1>🚀 Meme Quant</h1>
+                <span class="subtitle">Order Flow Scanner</span>
+            </div>
+            <div class="header-right">
+                <div class="stat-pill">
+                    <span class="label">Contracts</span>
+                    <span class="value" id="contractCount">-</span>
+                </div>
+                <div class="connection-status" id="connectionStatus">
+                    <span class="dot"></span>
+                    <span class="text">Connecting...</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <main class="main-layout">
+            <!-- Sidebar - Coin Browser -->
+            <aside class="sidebar">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search coins..." class="search-input">
+                </div>
+                
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="new">🆕 New</button>
+                    <button class="filter-tab" data-filter="all">All</button>
+                    <button class="filter-tab" data-filter="bingx">BingX</button>
+                    <button class="filter-tab" data-filter="blofin">BloFin</button>
+                    <button class="filter-tab" data-filter="hyperliquid">HL</button>
+                </div>
+                
+                <div class="coin-list" id="coinList">
+                    <div class="loading">Loading coins...</div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <section class="content">
+                <!-- Watching Section -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <span>📊 Watching</span>
+                        <span class="badge" id="watchingCount">0</span>
+                    </h2>
+                    <div class="watching-grid" id="watchingGrid">
+                        <div class="empty-state">
+                            <div class="empty-icon">👆</div>
+                            <h3>Select coins to watch</h3>
+                            <p>Click on any coin from the left panel to start watching its order flow</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
